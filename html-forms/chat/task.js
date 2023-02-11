@@ -19,7 +19,8 @@ widget.onclick = () => {
 
 function pushMessage(e) {
     let result
-    if (e.code === "Enter" && input.value.length != 0) {
+    let value = input.value.trim()
+    if (e.code === "Enter" && value.length != 0) {
         result = input.value
         input.value = ""
         rengerMessage(result, 'message_client')        
