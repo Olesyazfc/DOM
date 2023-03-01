@@ -5,19 +5,25 @@ hasTooltip.forEach((i) => {
     let title = i.getAttribute('title')
         
     i.onclick = () => {
+
+      if ( i.nextElementSibling === null || i.nextElementSibling.classList[0] != 'tooltip' ) {
+
         let pos = i.getBoundingClientRect()
         top = pos.bottom + window.scrollY
         left = pos.left - window.scrollX 
 
-        i.innerHTML += `
-        <div class="tooltip" style="left: ${left}px; top: ${top}px; position: absolute;">
+        let newElement = `
+        <div class="tooltip tooltip_active" style="left: ${left}px; top: ${top}px; position: absolute;">
         ${title}
         </div>
       `
+        i.insertAdjacentHTML('afterend', newElement)
+      } else {
+        let a = i.nextElementSibling
+        a.classList.toggle('tooltip_active')
+      }
 
-        i.querySelector('.tooltip').classList.toggle('tooltip_active')
-
-        return false
+      return false
     }
 })
 

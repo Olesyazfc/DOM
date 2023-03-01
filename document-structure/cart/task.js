@@ -37,10 +37,10 @@ function addToCart(product, value) {
 
 
     let products = Array.from(cart.querySelectorAll('.cart__product'))
-    let lastCount = products.filter(i => i.getAttribute('data-id') == dataId)
+    let lastCount = products.find(i => i.getAttribute('data-id') == dataId)
     
-    if (lastCount.length > 0) {
-        let cartCount = lastCount[0].querySelector('.cart__product-count')
+    if (lastCount != null) {
+        let cartCount = lastCount.querySelector('.cart__product-count')
         let lastInt = parseInt(cartCount.textContent)
         let newInt = parseInt(count.textContent)
         cartCount.textContent = lastInt + newInt      
